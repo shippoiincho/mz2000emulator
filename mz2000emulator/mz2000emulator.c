@@ -3746,11 +3746,11 @@ int main() {
             //      sprintf(str,"%04x %ld %x %x %x %x",cpu.PC,cpu_clocks,i8253[0],i8253_counter[0],i8253[2],i8253_counter[2]);
             //      video_print(str);
 
-            cursor_x=3;
-             cursor_y=18;
-//                 sprintf(str,"%04x %02x",cpu.PC,mainram[cpu.PC]);
-                    sprintf(str,"%04x",Z80_PC(cpu));
-                 video_print(str);
+//             cursor_x=3;
+//              cursor_y=18;
+// //                 sprintf(str,"%04x %02x",cpu.PC,mainram[cpu.PC]);
+//                     sprintf(str,"%04x",Z80_PC(cpu));
+//                  video_print(str);
 
             if(filelist==0) {
                 draw_files(-1,0);
