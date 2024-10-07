@@ -1,4 +1,5 @@
 build/
+lfs/
 mz2000emulator/mzrom.h
 mz2000emulator/mztest.h
 mz2000emulator/mzkanji.h

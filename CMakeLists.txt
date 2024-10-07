@@ -13,6 +13,7 @@ if (EXISTS ${picoVscode})
 endif()
 # ====================================================================================
 cmake_minimum_required(VERSION 3.13)
+set(PICO_BOARD pico CACHE STRING "Board type")
 
 include(pico_sdk_import.cmake)
 
