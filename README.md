@@ -28,6 +28,7 @@ BML3 や FM-7 エミュレータと同じです
 - GPIO4 VGA:Green
 - GPIO6 Audio
 
+VGA の RGB 信号には 220~330ohm 程度の抵抗を直列に入れます。
 VGA、Audio の　GND に Pico の　GND を接続してください。
 
 ---
