@@ -95,6 +95,7 @@ uint8_t i8253[3];
 uint8_t i8253_access[3];
 uint16_t i8253_preload[3];
 uint16_t i8253_counter[3];
+uint8_t i8253_pending[3];
 uint16_t i8253_latch[3];
 uint32_t i8253_latch_flag=0;
 volatile uint32_t i8253_enable_irq=0;
@@ -258,12 +259,14 @@ bool __not_in_flash_func(hsync_handler)(struct repeating_timer *t) {
                     } else {
                 i8253_counter[1]=i8253_preload[1];
                 if((i8253_access[2]<2)&&(i8253_preload[2]!=0)){
-                    if (i8253_counter[2]>1) {
-                       i8253_counter[2]--;
+                    if(i8253_pending[2]) {
+                        i8253_pending[2]=0;
                     } else {
-                        i8253_counter[2]=i8253_preload[2];
-
-                     
+                        if (i8253_counter[2]>1) {
+                           i8253_counter[2]--;
+                        } else {
+                            i8253_counter[2]=i8253_preload[2];
+                        }
                     }
                 }
             }
@@ -3269,6 +3272,8 @@ static void io_write(void *context, uint16_t address, uint8_t data)
 
 //                        i8253_counter[addr-4]=i8253_preload[addr-4];
 
+            i8253_pending[addr-0xe4]=1;
+
             break;
 
         case 0xe7:  // i8253 control
@@ -3498,9 +3503,9 @@ int main() {
 
 // uart handler
 
-    irq_set_exclusive_handler(UART0_IRQ,uart_handler);
-    irq_set_enabled(UART0_IRQ,true);
-    uart_set_irq_enables(uart0,true,false);
+    // irq_set_exclusive_handler(UART0_IRQ,uart_handler);
+    // irq_set_enabled(UART0_IRQ,true);
+    // uart_set_irq_enables(uart0,true,false);
 
     multicore_launch_core1(main_core1);
 

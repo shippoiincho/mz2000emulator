@@ -6,10 +6,7 @@
             "type": "process",
             "isBuildCommand": true,
             "command": "${userHome}/.pico-sdk/ninja/v1.12.1/ninja",
-            "args": [
-                "-C",
-                "${workspaceFolder}/build"
-            ],
+            "args": ["-C", "${workspaceFolder}/build"],
             "group": "build",
             "presentation": {
                 "reveal": "always",
@@ -54,19 +51,8 @@
             ],
             "problemMatcher": [],
             "windows": {
-                "command": "${env:USERPROFILE}/.pico-sdk/openocd/0.12.0+dev/openocd.exe"
+                "command": "${env:USERPROFILE}/.pico-sdk/openocd/0.12.0+dev/openocd.exe",
             }
-        },
-        {
-            "type": "cmake",
-            "label": "CMake: build",
-            "command": "build",
-            "targets": [
-                "all"
-            ],
-            "group": "build",
-            "problemMatcher": [],
-            "detail": "CMake template build task"
         }
     ]
 }
