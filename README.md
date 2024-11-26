@@ -51,12 +51,34 @@ MZT イメージの操作ができます。
 UART 入出力に対応していません。
 LittleFS 上の MZT 形式のファイルをロード・セーブに用います。
 
+LittleFS の扱い方については、
+[こちらの記事を参照](https://shippoiincho.github.io/posts/39/)してください。
+
 ---
 # ROM など
 
 いつものように純正ROM が必要です。
 `mzrom_dummy.h` を `mzrom.h` にコピーしたのち、
 `mzipl` `mzipl0` `mzfont` にそれぞれ、IPL(MZ-2000)、IPL(MZ-80B)、フォントのデータを入れてください。
+
+---
+# コンパイル済みバイナリ
+
+`prebuild` ディレクトリの下にコンパイル済みバイナリを置きました。
+
+各 uf2 を、Pico に書き込むのと合わせて、ROM ファイルを Pico に置きます。
+
+picotool を使う場合は、以下の通りで行けると思います。
+(picotool は pico-sdk に含まれています)
+
+```
+$ picotool load -v -x ipl.rom   -t bin -o 0x10070000
+$ picotool load -v -x font.rom  -t bin -o 0x10078000
+
+80B のエミュレーションを使う場合は MZ-80B の IPL.ROM も書き込みます
+$ picotool load -v -x ipl.rom   -t bin -o 0x10074000
+```
+
 
 ---
 # 制限事項

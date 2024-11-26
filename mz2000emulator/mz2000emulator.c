@@ -7,6 +7,8 @@
 //  GP4: Green
 //  GP6: Audio
 
+//#define PREBUILD_BINARY         // Genetate Prebuild Binary
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -31,7 +33,12 @@
 #include "mzkeymap.h"
 #include "Z80.h"
 #include "mzmisc.h"
+
+#ifndef PREBUILD_BINARY
 #include "mzrom.h"
+#else 
+#include "mzrom_prebuild.h"
+#endif
 
 #include "lfs.h"
 
